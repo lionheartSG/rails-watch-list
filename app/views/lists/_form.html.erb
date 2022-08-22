@@ -4,6 +4,8 @@
 <%= simple_form_for(@list) do |f| %>
   <%= f.input :name %>
   <%= f.input :picture_url %>
+  <p>Or you can upload your photo through this link instead</p>
+  <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
 </div>

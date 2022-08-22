@@ -1,5 +1,9 @@
-<%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.input :comment %>
-  <%= f.association :movie %>
-  <%= f.button :submit %>
-<% end %>
+<br>
+
+<div class="container">
+
+  <%= render 'bm_form', list: @list %>
+  <br>
+  <%= link_to "Back", lists_path, class: 'btn btn-primary' %>
+
+</div>

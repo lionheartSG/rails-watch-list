@@ -1,8 +1,17 @@
-<ul>
-  <% @lists.each do |list| %>
-    <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
+<div class="banner">
+  <div>
+    <h1><strong>Save any kind of movies</strong>!</h1>
+    <p>Proudly presented to you by a Le Wagon graduate</p>
+  </div>
+</div>
 
-<%= link_to 'Create new list', new_list_path %>
+
+<div class="container">
+  <div class="cards">
+    <% @lists.each do |list| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=list.picture_url%>)">
+    <%= link_to list.name, list_path(list) %>
+  </div>
+  <% end %>
+</div>
 

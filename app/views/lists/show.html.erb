@@ -1,23 +1,38 @@
 
-<h1><%= @list.name %></h1>
-
-  <% @bookmarks.each do |bookmark| %>
+<div class="container" id="list">
+<br>
+    <h1><%= @list.name %></h1>
     <hr>
-    <p><%= bookmark.movie.title %></p>
-    <p><%= bookmark.movie.overview %></p>
-    <p><%= bookmark.movie.poster_url %></p>
-    <p><%= bookmark.comment %></p>
-    <%= link_to "Delete Bookmark", bookmark_path(bookmark),
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-    class: "btn btn-danger btn-sm"
-%>
-    <hr>
-  <% end %>
+<div class="show-movie">
 
-<%= link_to 'Back', lists_path %>
-<%= link_to 'Edit', edit_list_path %>
-<%= link_to 'Add Movies into this list', new_list_bookmark_path(@list, @bookmark) %>
-<%= link_to "Delete List", list_path(@list),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-  class: "btn btn-danger btn-sm"
-%>
+  <div>
+      <% @bookmarks.each do |bookmark| %>
+      <p><%= bookmark.movie.title %></p>
+      <p><%= bookmark.movie.overview %></p>
+      <%= image_tag(bookmark.movie.poster_url, width: 200) %>
+      <%= link_to "Delete Bookmark", bookmark_path(bookmark),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+      class: "btn btn-danger btn-sm"%>
+  </div>
+
+  <div class="comments">
+    <% bookmark.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, width: 100, height: 100, crop: :fill %>
+         <p><%= bookmark.comment %></p>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+</div>
+
+<div class="links">
+  <%= link_to 'Back', lists_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Edit', edit_list_path, class: 'btn btn-secondary'%>
+  <%= link_to 'Add Movies into this list', new_list_bookmark_path(@list, @bookmark), class: 'btn btn-secondary'%>
+  <%= link_to "Delete List", list_path(@list),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+              class: "btn btn-danger btn-sm"
+  %>
+</div>
